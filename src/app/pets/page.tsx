@@ -1,37 +1,48 @@
 import { Pet, columns } from './columns';
 import { DataTable } from './data-table';
-const { ConnectionPool } = require('mssql/msnodesqlv8');
 
-const client = require('mssql/msnodesqlv8');
+const sql = require('mssql');
 
-const connectionString =
-  'server=.;Database=Master;Trusted_Connection=Yes;Driver={SQL Server Native Client 11.0}';
+const config = {
+  server: 'localhost',
+  user: 'agaAdmin1',
+  password: 'abc123',
+  options: {
+    encrypt: true, // for azure
+    trustServerCertificate: true, // change to true for local dev / self-signed certs
+  },
+};
 
-// const config = {
-//   server: 'LUCID-PC\\SQLEXPRESS',
-//   database: 'db1080944_adoptagoldenatla',
-//   driver: 'msnodesqlv8',
-//   options: {
-//     trustedConnection: true,
-//   },
-// };
+// const connectionStr =
+//   'server=.;initial catalog=db1080944_adoptagoldenatla;trusted_connection=true';
+
+const query = `SELECT TOP (1) *
+FROM [db1080944_adoptagoldenatla].[adoptagoldenatla].[DogList];`;
 
 async function getPets(): Promise<Pet[]> {
-  // const pool: ConnectionPool = new client.ConnectionPool(config);
-  const pool = new ConnectionPool(connectionString);
-  const results: any = await pool.query`SELECT TOP (1) *
-    FROM db1080944_adoptagoldenatla.adoptagoldenatla.DogList
-  `;
-  // const data = await res.json();
-  return results.rows[0];
+  try {
+    await sql.connect(config);
+    const result = await sql.query(query);
+    const data = result.recordset;
+    // console.log(data);
+    return data;
+  } catch (err) {
+    console.error('Error retrieving pets:', err);
+    throw err;
+  }
 }
 
 export default async function Page() {
-  const data = await getPets();
+  try {
+    const data = await getPets();
+    // console.log('my data:', data);
 
-  return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
-    </div>
-  );
+    return (
+      <div className="container mx-auto py-10">
+        <DataTable columns={columns} data={data} />
+      </div>
+    );
+  } catch (e) {
+    console.log(e);
+  }
 }
