@@ -1,3 +1,7 @@
+// TODO
+// Create a react state and input field for querying data
+// create check boxes for columns to query
+
 import { Pet, columns } from './columns';
 import { DataTable } from './data-table';
 
