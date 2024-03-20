@@ -16,7 +16,7 @@ const config = {
 // const connectionStr =
 //   'server=.;initial catalog=db1080944_adoptagoldenatla;trusted_connection=true';
 
-const query = `SELECT TOP (1) *
+const query = `SELECT TOP (30) *
 FROM [db1080944_adoptagoldenatla].[adoptagoldenatla].[DogList];`;
 
 async function getPets(): Promise<Pet[]> {

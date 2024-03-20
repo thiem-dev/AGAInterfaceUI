@@ -1,6 +1,8 @@
-"use client"
+'use client';
 
-import { ColumnDef } from "@tanstack/react-table"
+import { ColumnDef } from '@tanstack/react-table';
+import { MoreHorizontal } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 // columns.tsx
 
 // This type is used to define the shape of our data.
@@ -10,7 +12,7 @@ export type Pet = {
   adopted: string | null;
   dog_name: string | null;
   aga_number: string | null;
-  date_in_program: string | null;
+  date_in_program: Date | null;
   age: string | null;
   sex: string | null;
   veterinarian: string | null;
@@ -74,271 +76,270 @@ export type Pet = {
   agaarepID: number | null;
 };
 
-
 export const columns: ColumnDef<Pet>[] = [
   {
-    accessorKey: "id",
-    header: "ID",
-    cell: info => info.getValue() || 'N/A', // Default display for null values
+    accessorKey: 'ID',
+    header: 'ID',
+    cell: (info) => info.getValue() || 'N/A', // Default display for null values
   },
   {
-    accessorKey: "adopted",
-    header: "Adopted",
+    accessorKey: 'adopted',
+    header: 'Adopted',
   },
   {
-    accessorKey: "dog_name",
-    header: "Dog Name",
+    accessorKey: 'dog_name',
+    header: 'Dog Name',
   },
   {
-    accessorKey: "aga_number",
-    header: "AGA Number",
+    accessorKey: 'aga_number',
+    header: 'AGA Number',
   },
   {
-    accessorKey: "date_in_program",
-    header: "Date in Program",
+    accessorKey: 'date_in_program',
+    header: 'Date in Program',
   },
   {
-    accessorKey: "age",
-    header: "Age",
+    accessorKey: 'age',
+    header: 'Age',
   },
   {
-    accessorKey: "sex",
-    header: "Sex",
+    accessorKey: 'sex',
+    header: 'Sex',
   },
   {
-    accessorKey: "veterinarian",
-    header: "Veterinarian",
+    accessorKey: 'veterinarian',
+    header: 'Veterinarian',
   },
   {
-    accessorKey: "foster",
-    header: "Foster",
+    accessorKey: 'foster',
+    header: 'Foster',
   },
   {
-    accessorKey: "foster2",
-    header: "Foster 2",
+    accessorKey: 'foster2',
+    header: 'Foster 2',
   },
   {
-    accessorKey: "foster3",
-    header: "Foster 3",
+    accessorKey: 'foster3',
+    header: 'Foster 3',
   },
   {
-    accessorKey: "readyforfoster",
-    header: "Ready for Foster",
+    accessorKey: 'readyforfoster',
+    header: 'Ready for Foster',
   },
   {
-    accessorKey: "phone_number",
-    header: "Phone Number",
+    accessorKey: 'phone_number',
+    header: 'Phone Number',
   },
   {
-    accessorKey: "agarep",
-    header: "AGA Rep",
+    accessorKey: 'agarep',
+    header: 'AGA Rep',
   },
   {
-    accessorKey: "visits",
-    header: "Visits",
+    accessorKey: 'visits',
+    header: 'Visits',
   },
   {
-    accessorKey: "comments",
-    header: "Comments",
+    accessorKey: 'comments',
+    header: 'Comments',
   },
   {
-    accessorKey: "criticalinfo",
-    header: "Critical Info",
+    accessorKey: 'criticalinfo',
+    header: 'Critical Info',
   },
   {
-    accessorKey: "otiowner",
-    header: "OTI Owner",
+    accessorKey: 'otiowner',
+    header: 'OTI Owner',
   },
   {
-    accessorKey: "otishelter",
-    header: "OTI Shelter",
+    accessorKey: 'otishelter',
+    header: 'OTI Shelter',
   },
   {
-    accessorKey: "shelter",
-    header: "Shelter",
+    accessorKey: 'shelter',
+    header: 'Shelter',
   },
   {
-    accessorKey: "gp",
-    header: "GP",
+    accessorKey: 'gp',
+    header: 'GP',
   },
   {
-    accessorKey: "mix",
-    header: "Mix",
+    accessorKey: 'mix',
+    header: 'Mix',
   },
   {
-    accessorKey: "mix_other",
-    header: "Mix Other",
+    accessorKey: 'mix_other',
+    header: 'Mix Other',
   },
   {
-    accessorKey: "heartworms",
-    header: "Heartworms",
+    accessorKey: 'heartworms',
+    header: 'Heartworms',
   },
   {
-    accessorKey: "heartworms_1st",
-    header: "Heartworms 1st",
+    accessorKey: 'heartworms_1st',
+    header: 'Heartworms 1st',
   },
   {
-    accessorKey: "heartworms_2nd",
-    header: "Heartworms 2nd",
+    accessorKey: 'heartworms_2nd',
+    header: 'Heartworms 2nd',
   },
   {
-    accessorKey: "spay_neuter_date",
-    header: "Spay Neuter Date",
+    accessorKey: 'spay_neuter_date',
+    header: 'Spay Neuter Date',
   },
   {
-    accessorKey: "chipnum",
-    header: "Chip Number",
+    accessorKey: 'chipnum',
+    header: 'Chip Number',
   },
   {
-    accessorKey: "medinfo",
-    header: "Medical Info",
+    accessorKey: 'medinfo',
+    header: 'Medical Info',
   },
   {
-    accessorKey: "adoptedby",
-    header: "Adopted By",
+    accessorKey: 'adoptedby',
+    header: 'Adopted By',
   },
   {
-    accessorKey: "adopteddate",
-    header: "Adopted Date",
+    accessorKey: 'adopteddate',
+    header: 'Adopted Date',
   },
   {
-    accessorKey: "chipregistered",
-    header: "Chip Registered",
+    accessorKey: 'chipregistered',
+    header: 'Chip Registered',
   },
   {
-    accessorKey: "chipverifiedby",
-    header: "Chip Verified By",
+    accessorKey: 'chipverifiedby',
+    header: 'Chip Verified By',
   },
   {
-    accessorKey: "DateInF1",
-    header: "Date In F1",
+    accessorKey: 'DateInF1',
+    header: 'Date In F1',
   },
   {
-    accessorKey: "DateOutF1",
-    header: "Date Out F1",
+    accessorKey: 'DateOutF1',
+    header: 'Date Out F1',
   },
   {
-    accessorKey: "DateInF2",
-    header: "Date In F2",
+    accessorKey: 'DateInF2',
+    header: 'Date In F2',
   },
   {
-    accessorKey: "DateOutF2",
-    header: "Date Out F2",
+    accessorKey: 'DateOutF2',
+    header: 'Date Out F2',
   },
   {
-    accessorKey: "DateInF3",
-    header: "Date In F3",
+    accessorKey: 'DateInF3',
+    header: 'Date In F3',
   },
   {
-    accessorKey: "DateOutF3",
-    header: "Date Out F3",
+    accessorKey: 'DateOutF3',
+    header: 'Date Out F3',
   },
   {
-    accessorKey: "DateLeftVet",
-    header: "Date Left Vet",
+    accessorKey: 'DateLeftVet',
+    header: 'Date Left Vet',
   },
   {
-    accessorKey: "ReturnDate1",
-    header: "Return Date 1",
+    accessorKey: 'ReturnDate1',
+    header: 'Return Date 1',
   },
   {
-    accessorKey: "ReturnDate2",
-    header: "Return Date 2",
+    accessorKey: 'ReturnDate2',
+    header: 'Return Date 2',
   },
   {
-    accessorKey: "date_in_program2",
-    header: "Date in Program 2",
+    accessorKey: 'date_in_program2',
+    header: 'Date in Program 2',
   },
   {
-    accessorKey: "former_aga_number",
-    header: "Former AGA Number",
+    accessorKey: 'former_aga_number',
+    header: 'Former AGA Number',
   },
   {
-    accessorKey: "behaviorinfo",
-    header: "Behavior Info",
+    accessorKey: 'behaviorinfo',
+    header: 'Behavior Info',
   },
   {
-    accessorKey: "followup",
-    header: "Follow-Up",
+    accessorKey: 'followup',
+    header: 'Follow-Up',
   },
   {
-    accessorKey: "traininginfo",
-    header: "Training Info",
+    accessorKey: 'traininginfo',
+    header: 'Training Info',
   },
   {
-    accessorKey: "FollowupDate",
-    header: "Follow-Up Date",
+    accessorKey: 'FollowupDate',
+    header: 'Follow-Up Date',
   },
   {
-    accessorKey: "FollowupVet",
-    header: "Follow-Up Vet",
+    accessorKey: 'FollowupVet',
+    header: 'Follow-Up Vet',
   },
   {
-    accessorKey: "FollowupConfirmed",
-    header: "Follow-Up Confirmed",
+    accessorKey: 'FollowupConfirmed',
+    header: 'Follow-Up Confirmed',
   },
   {
-    accessorKey: "FollowupDate2",
-    header: "Follow-Up Date 2",
+    accessorKey: 'FollowupDate2',
+    header: 'Follow-Up Date 2',
   },
   {
-    accessorKey: "FollowupVet2",
-    header: "Follow-Up Vet 2",
+    accessorKey: 'FollowupVet2',
+    header: 'Follow-Up Vet 2',
   },
   {
-    accessorKey: "FollowupConfirmed2",
-    header: "Follow-Up Confirmed 2",
+    accessorKey: 'FollowupConfirmed2',
+    header: 'Follow-Up Confirmed 2',
   },
   {
-    accessorKey: "Medications",
-    header: "Medications",
+    accessorKey: 'Medications',
+    header: 'Medications',
   },
   {
-    accessorKey: "MedicationsRefills",
-    header: "Medications Refills",
+    accessorKey: 'MedicationsRefills',
+    header: 'Medications Refills',
   },
   {
-    accessorKey: "adoptedby2",
-    header: "Adopted By 2",
+    accessorKey: 'adoptedby2',
+    header: 'Adopted By 2',
   },
   {
-    accessorKey: "adopteddate2",
-    header: "Adopted Date 2",
+    accessorKey: 'adopteddate2',
+    header: 'Adopted Date 2',
   },
   {
-    accessorKey: "former_date_in_program",
-    header: "Former Date In Program",
+    accessorKey: 'former_date_in_program',
+    header: 'Former Date In Program',
   },
   {
-    accessorKey: "medical_rep",
-    header: "Medical Rep",
+    accessorKey: 'medical_rep',
+    header: 'Medical Rep',
   },
   {
-    accessorKey: "other_rescue",
-    header: "Other Rescue",
+    accessorKey: 'other_rescue',
+    header: 'Other Rescue',
   },
   {
-    accessorKey: "rainbow_bridge",
-    header: "Rainbow Bridge",
+    accessorKey: 'rainbow_bridge',
+    header: 'Rainbow Bridge',
   },
   {
-    accessorKey: "aga_trainer",
-    header: "AGA Trainer",
+    accessorKey: 'aga_trainer',
+    header: 'AGA Trainer',
   },
   {
-    accessorKey: "agareturn",
-    header: "AGA Return",
+    accessorKey: 'agareturn',
+    header: 'AGA Return',
   },
   {
-    accessorKey: "location",
-    header: "Location",
+    accessorKey: 'location',
+    header: 'Location',
   },
   {
-    accessorKey: "osid",
-    header: "OSID",
+    accessorKey: 'osid',
+    header: 'OSID',
   },
   {
-    accessorKey: "agaarepID",
-    header: "AGA Rep ID",
+    accessorKey: 'agaarepID',
+    header: 'AGA Rep ID',
   },
 ];
