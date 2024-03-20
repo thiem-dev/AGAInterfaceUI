@@ -12,6 +12,13 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+
 // columns.tsx
 
 // This type is used to define the shape of our data.
@@ -186,14 +193,23 @@ export const columns: ColumnDef<Pet>[] = [
   {
     accessorKey: 'visits',
     header: 'Visits',
+    cell: ({ row }) => {
+      return <div className="min-w-[35rem]">{row.original.visits}</div>;
+    },
   },
   {
     accessorKey: 'comments',
     header: 'Comments',
+    cell: ({ row }) => {
+      return <div className="min-w-[35rem]">{row.original.comments}</div>;
+    },
   },
   {
     accessorKey: 'criticalinfo',
     header: 'Critical Info',
+    cell: ({ row }) => {
+      return <div className="min-w-[35rem]">{row.original.criticalinfo}</div>;
+    },
   },
   {
     accessorKey: 'otiowner',
@@ -242,6 +258,9 @@ export const columns: ColumnDef<Pet>[] = [
   {
     accessorKey: 'medinfo',
     header: 'Medical Info',
+    cell: ({ row }) => {
+      return <div className="min-w-[35rem]">{row.original.medinfo}</div>;
+    },
   },
   {
     accessorKey: 'adoptedby',
@@ -297,7 +316,18 @@ export const columns: ColumnDef<Pet>[] = [
   },
   {
     accessorKey: 'date_in_program2',
-    header: 'Date in Program 2',
+    // header: 'Date in Program 2',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Date in Program 2
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: 'former_aga_number',
