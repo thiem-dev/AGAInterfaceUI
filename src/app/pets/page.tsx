@@ -21,7 +21,8 @@ const config = {
 //   'server=.;initial catalog=db1080944_adoptagoldenatla;trusted_connection=true';
 
 const query = `SELECT *
-FROM [db1080944_adoptagoldenatla].[adoptagoldenatla].[DogList];`;
+FROM [db1080944_adoptagoldenatla].[adoptagoldenatla].[DogList]
+ORDER BY [date_in_program2] DESC`;
 
 async function getPets(): Promise<Pet[]> {
   try {
