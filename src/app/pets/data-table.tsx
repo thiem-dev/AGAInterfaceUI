@@ -12,6 +12,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  VisibilityState,
 } from '@tanstack/react-table';
 
 import {
@@ -26,6 +27,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { DataTablePagination } from '@/components/ui/data-table-pagination';
+import { DataTableViewOptions } from '@/components/ui/data-table-view-options';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -41,6 +43,8 @@ export function DataTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
 
   const table = useReactTable({
     data,
@@ -53,10 +57,12 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
     state: {
       sorting,
       rowSelection,
       columnFilters,
+      columnVisibility,
     },
   });
 
@@ -97,6 +103,9 @@ export function DataTable<TData, TValue>({
           className="max-w-sm"
         />
       </div>
+
+      {/* Column Visibilty Controls */}
+      <DataTableViewOptions table={table} />
 
       {/* Pagination Controls */}
       <DataTablePagination table={table} />
