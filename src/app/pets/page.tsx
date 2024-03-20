@@ -5,8 +5,8 @@ const sql = require('mssql');
 
 const config = {
   server: 'localhost',
-  user: 'agaAdmin1',
-  password: 'abc123',
+  user: process.env.DB_USER,
+  password: process.env.DB_PWD,
   options: {
     encrypt: true, // for azure
     trustServerCertificate: true, // change to true for local dev / self-signed certs
@@ -16,7 +16,7 @@ const config = {
 // const connectionStr =
 //   'server=.;initial catalog=db1080944_adoptagoldenatla;trusted_connection=true';
 
-const query = `SELECT TOP (30) *
+const query = `SELECT TOP (100) *
 FROM [db1080944_adoptagoldenatla].[adoptagoldenatla].[DogList];`;
 
 async function getPets(): Promise<Pet[]> {
