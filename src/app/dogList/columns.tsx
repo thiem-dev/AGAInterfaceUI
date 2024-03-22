@@ -145,7 +145,18 @@ export const columns: ColumnDef<Pet>[] = [
   },
   {
     accessorKey: 'foster',
-    header: 'Foster',
+    // header: 'Foster',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Foster
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   // {
   //   accessorKey: 'foster2',
@@ -165,7 +176,18 @@ export const columns: ColumnDef<Pet>[] = [
   },
   {
     accessorKey: 'agarep',
-    header: 'AGA Rep',
+    // header: 'AGA Rep',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          AGA Rep
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: 'visits',
