@@ -3,6 +3,12 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { ArrowUpDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 // columns.tsx
 
@@ -141,27 +147,18 @@ export const columns: ColumnDef<Pet>[] = [
     accessorKey: 'foster',
     header: 'Foster',
   },
-  {
-    accessorKey: 'foster2',
-    // header: 'Foster 2',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'foster3',
-    // header: 'Foster 3',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'readyforfoster',
-    // header: 'Ready for Foster',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
+  // {
+  //   accessorKey: 'foster2',
+  //   header: 'Foster 2',
+  // },
+  // {
+  //   accessorKey: 'foster3',
+  //   header: 'Foster 3',
+  // },
+  // {
+  //   accessorKey: 'readyforfoster',
+  //   header: 'Ready for Foster',
+  // },
   {
     accessorKey: 'phone_number',
     header: 'Phone Number',
@@ -174,86 +171,56 @@ export const columns: ColumnDef<Pet>[] = [
     accessorKey: 'visits',
     header: 'Visits',
     cell: ({ row }) => {
-      return <div className="min-w-[35rem]">{row.original.visits}</div>;
+      return row.original.visits === '' || row.original.visits === null ? (
+        'N/A'
+      ) : (
+        <div className="min-w-[35rem]">
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Read More</AccordionTrigger>
+              <AccordionContent>{row.original.visits}</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      );
     },
   },
   {
     accessorKey: 'comments',
     header: 'Comments',
     cell: ({ row }) => {
-      return <div className="min-w-[35rem]">{row.original.comments}</div>;
+      return row.original.visits === '' || row.original.visits === null ? (
+        'N/A'
+      ) : (
+        <div className="min-w-[35rem]">
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Read More</AccordionTrigger>
+              <AccordionContent>{row.original.comments}</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      );
     },
   },
   {
     accessorKey: 'criticalinfo',
     header: 'Critical Info',
     cell: ({ row }) => {
-      return <div className="min-w-[35rem]">{row.original.criticalinfo}</div>;
+      return row.original.criticalinfo === '' ||
+        row.original.criticalinfo === null ? (
+        'N/A'
+      ) : (
+        <div className="min-w-[35rem]">
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Read More</AccordionTrigger>
+              <AccordionContent>{row.original.criticalinfo}</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      );
     },
-  },
-  {
-    accessorKey: 'otiowner',
-    // header: 'OTI Owner',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'otishelter',
-    // header: 'OTI Shelter',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'shelter',
-    header: 'Shelter',
-  },
-  {
-    accessorKey: 'gp',
-    // header: 'GP',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'mix',
-    // header: 'Mix',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'mix_other',
-    // header: 'Mix Other',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'heartworms',
-    // header: 'Heartworms',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'heartworms_1st',
-    // header: 'Heartworms 1st',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'heartworms_2nd',
-    // header: 'Heartworms 2nd',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'spay_neuter_date',
-    header: 'Spay Neuter Date',
   },
   {
     accessorKey: 'chipnum',
@@ -263,7 +230,18 @@ export const columns: ColumnDef<Pet>[] = [
     accessorKey: 'medinfo',
     header: 'Medical Info',
     cell: ({ row }) => {
-      return <div className="min-w-[35rem]">{row.original.medinfo}</div>;
+      return row.original.medinfo === '' || row.original.medinfo === null ? (
+        'N/A'
+      ) : (
+        <div className="min-w-[35rem]">
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Read More</AccordionTrigger>
+              <AccordionContent>{row.original.medinfo}</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      );
     },
   },
   {
@@ -274,239 +252,184 @@ export const columns: ColumnDef<Pet>[] = [
     accessorKey: 'adopteddate',
     header: 'Adopted Date',
   },
-  {
-    accessorKey: 'chipregistered',
-    // header: 'Chip Registered',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'chipverifiedby',
-    // header: 'Chip Verified By',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'DateInF1',
-    // header: 'Date In F1',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'DateOutF1',
-    // header: 'Date Out F1',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'DateInF2',
-    // header: 'Date In F2',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'DateOutF2',
-    // header: 'Date Out F2',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'DateInF3',
-    // header: 'Date In F3',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'DateOutF3',
-    // header: 'Date Out F3',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'DateLeftVet',
-    // header: 'Date Left Vet',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'ReturnDate1',
-    // header: 'Return Date 1',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'ReturnDate2',
-    // header: 'Return Date 2',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'former_aga_number',
-    // header: 'Former AGA Number',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'behaviorinfo',
-    // header: 'Behavior Info',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'followup',
-    // header: 'Follow-Up',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'traininginfo',
-    // header: 'Training Info',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'FollowupDate',
-    // header: 'Follow-Up Date',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'FollowupVet',
-    // header: 'Follow-Up Vet',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'FollowupConfirmed',
-    // header: 'Follow-Up Confirmed',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'FollowupDate2',
-    // header: 'Follow-Up Date 2',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'FollowupVet2',
-    // header: 'Follow-Up Vet 2',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'FollowupConfirmed2',
-    // header: 'Follow-Up Confirmed 2',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'Medications',
-    // header: 'Medications',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'MedicationsRefills',
-    // header: 'Medications Refills',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'adoptedby2',
-    // header: 'Adopted By 2',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'adopteddate2',
-    // header: 'Adopted Date 2',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'former_date_in_program',
-    // header: 'Former Date In Program',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'medical_rep',
-    // header: 'Medical Rep',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'other_rescue',
-    // header: 'Other Rescue',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'rainbow_bridge',
-    header: 'Rainbow Bridge',
-  },
-  {
-    accessorKey: 'aga_trainer',
-    // header: 'AGA Trainer',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'agareturn',
-    // header: 'AGA Return',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'location',
-    // header: 'Location',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'osid',
-    // header: 'OSID',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
-  {
-    accessorKey: 'agaarepID',
-    // header: 'AGA Rep ID',
-    header: ({ column }) => {
-      column.toggleVisibility(false);
-    },
-  },
+  // {
+  //   accessorKey: 'otiowner',
+  //   header: 'OTI Owner',
+  // },
+  // {
+  //   accessorKey: 'otishelter',
+  //   header: 'OTI Shelter',
+  // },
+  // {
+  //   accessorKey: 'shelter',
+  //   header: 'Shelter',
+  // },
+  // {
+  //   accessorKey: 'gp',
+  //   header: 'GP',
+  // },
+  // {
+  //   accessorKey: 'mix',
+  //   header: 'Mix',
+  // },
+  // {
+  //   accessorKey: 'mix_other',
+  //   header: 'Mix Other',
+  // },
+  // {
+  //   accessorKey: 'heartworms',
+  //   header: 'Heartworms',
+  // },
+  // {
+  //   accessorKey: 'heartworms_1st',
+  //   header: 'Heartworms 1st',
+  // },
+  // {
+  //   accessorKey: 'heartworms_2nd',
+  //   header: 'Heartworms 2nd',
+  // },
+  // {
+  //   accessorKey: 'spay_neuter_date',
+  //   header: 'Spay Neuter Date',
+  // },
+
+  // {
+  //   accessorKey: 'chipregistered',
+  //   header: 'Chip Registered',
+  // },
+  // {
+  //   accessorKey: 'chipverifiedby',
+  //   header: 'Chip Verified By',
+  // },
+  // {
+  //   accessorKey: 'DateInF1',
+  //   header: 'Date In F1',
+  // },
+  // {
+  //   accessorKey: 'DateOutF1',
+  //   header: 'Date Out F1',
+  // },
+  // {
+  //   accessorKey: 'DateInF2',
+  //   header: 'Date In F2',
+  // },
+  // {
+  //   accessorKey: 'DateOutF2',
+  //   header: 'Date Out F2',
+  // },
+  // {
+  //   accessorKey: 'DateInF3',
+  //   header: 'Date In F3',
+  // },
+  // {
+  //   accessorKey: 'DateOutF3',
+  //   header: 'Date Out F3',
+  // },
+  // {
+  //   accessorKey: 'DateLeftVet',
+  //   // header: 'Date Left Vet',
+  // },
+  // {
+  //   accessorKey: 'ReturnDate1',
+  //   // header: 'Return Date 1'
+  // },
+  // {
+  //   accessorKey: 'ReturnDate2',
+  //   // header: 'Return Date 2',
+  //   header: ({ column }) => {
+  //     column.toggleVisibility(false);
+  //   },
+  // },
+  // {
+  //   accessorKey: 'former_aga_number',
+  //   header: 'Former AGA Number',
+  // },
+  // {
+  //   accessorKey: 'behaviorinfo',
+  //   header: 'Behavior Info',
+  // },
+  // {
+  //   accessorKey: 'followup',
+  //   header: 'Follow-Up',
+  // },
+  // {
+  //   accessorKey: 'traininginfo',
+  //   header: 'Training Info',
+  // },
+  // {
+  //   accessorKey: 'FollowupDate',
+  //   header: 'Follow-Up Date',
+  // },
+  // {
+  //   accessorKey: 'FollowupVet',
+  //   header: 'Follow-Up Vet',
+  // },
+  // {
+  //   accessorKey: 'FollowupConfirmed',
+  //   header: 'Follow-Up Confirmed',
+  // },
+  // {
+  //   accessorKey: 'FollowupDate2',
+  //   header: 'Follow-Up Date 2',
+  // },
+  // {
+  //   accessorKey: 'FollowupVet2',
+  //   header: 'Follow-Up Vet 2',
+  // },
+  // {
+  //   accessorKey: 'FollowupConfirmed2',
+  //   header: 'Follow-Up Confirmed 2',
+  // },
+  // {
+  //   accessorKey: 'Medications',
+  //   header: 'Medications',
+  // },
+  // {
+  //   accessorKey: 'MedicationsRefills',
+  //   header: 'Medications Refills',
+  // },
+  // {
+  //   accessorKey: 'adoptedby2',
+  //   header: 'Adopted By 2',
+  // },
+  // {
+  //   accessorKey: 'adopteddate2',
+  //   header: 'Adopted Date 2',
+  // },
+  // {
+  //   accessorKey: 'former_date_in_program',
+  //   header: 'Former Date In Program',
+  // },
+  // {
+  //   accessorKey: 'medical_rep',
+  //   header: 'Medical Rep',
+  // },
+  // {
+  //   accessorKey: 'other_rescue',
+  //   header: 'Other Rescue',
+  // },
+  // {
+  //   accessorKey: 'rainbow_bridge',
+  //   header: 'Rainbow Bridge',
+  // },
+  // {
+  //   accessorKey: 'aga_trainer',
+  //   header: 'AGA Trainer',
+  // },
+  // {
+  //   accessorKey: 'agareturn',
+  //   header: 'AGA Return',
+  // },
+  // {
+  //   accessorKey: 'location',
+  //   header: 'Location',
+  // },
+  // {
+  //   accessorKey: 'osid',
+  //   header: 'OSID',
+  // },
+  // {
+  //   accessorKey: 'agaarepID',
+  //   header: 'AGA Rep ID',
+  // },
 ];

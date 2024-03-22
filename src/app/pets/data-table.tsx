@@ -2,6 +2,8 @@
 
 import * as React from 'react';
 
+import { FilterControls } from '@/components/ui/data-table-filterOptions';
+
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -25,7 +27,7 @@ import {
 } from '@/components/ui/table';
 
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+
 import { DataTablePagination } from '@/components/ui/data-table-pagination';
 import { DataTableViewOptions } from '@/components/ui/data-table-view-options';
 
@@ -68,41 +70,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      {/* Filter controls */}
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter by Dog Name..."
-          value={
-            (table.getColumn('dog_name')?.getFilterValue() as string) ?? ''
-          }
-          onChange={(event) =>
-            table.getColumn('dog_name')?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-      </div>
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter by AGA number..."
-          value={
-            (table.getColumn('aga_number')?.getFilterValue() as string) ?? ''
-          }
-          onChange={(event) =>
-            table.getColumn('aga_number')?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-      </div>
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter by Foster1 Name..."
-          value={(table.getColumn('foster')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('foster')?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-      </div>
+      <FilterControls table={table} columnFilters={columnFilters} />
 
       {/* Column Visibilty Controls */}
       <DataTableViewOptions table={table} />
