@@ -1,12 +1,7 @@
-// TODO
-// Create a react state and input field for querying data
-// create check boxes for columns to query
-
 import { Pet, columns } from './columns';
 import { DataTable } from './data-table';
 
 const sql = require('mssql');
-
 const config = {
   server: 'localhost',
   user: process.env.DB_USER,
@@ -16,7 +11,6 @@ const config = {
     trustServerCertificate: true, // change to true for local dev / self-signed certs
   },
 };
-
 // const connectionStr =
 //   'server=.;initial catalog=db1080944_adoptagoldenatla;trusted_connection=true';
 
@@ -41,7 +35,6 @@ export default async function Page() {
   try {
     const data = await getPets();
     // console.log('my data:', data);
-
     return (
       <div className="container mx-auto py-10">
         <DataTable columns={columns} data={data} />
