@@ -5,7 +5,9 @@ export default function Home() {
   return (
     <div>
       <h1>Welcome to the new AGA Interface / WebTool</h1>
-      <a href="./dogList">Go search Dog List</a>
+      <a href="./dogList" className="text-sky-400 hover:text-slate-400/90">
+        Link to Dog List Page
+      </a>
       <h2>Sample Link Below</h2>
       <Button variant="outline" className="bg-slate-300">
         <a href="/agaFiles/sample.pdf" target="blank" rel="noopener noreferrer">
